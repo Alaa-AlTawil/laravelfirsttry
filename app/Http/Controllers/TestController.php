@@ -33,33 +33,26 @@ class TestController extends Controller{
         echo $array[$name];
     }
     public function students(){
-        $array=["pablo","charbel","avo","pablo","alaa","dani","Tawil"];
+        $array=["pablo","charbel","avo","pablo","alaa","dani","Tawil","Tawil","jamal"];
         $m=count($array)/2;
         $gen=[];
         $final=[];
         if (is_numeric($m)){
             while(count($array)!=0){
-                array_push($gen,$array[0],$array[1]);
+                array_push($gen,array_pop($array),array_pop($array));
                 array_push($final,$gen);
-                unset($gen[0]);
-                unset($gen[1]);
-                unset($array[0]);
-                unset($array[1]);   
+                $gen=[];     
             }
         }
         else{
             while(count($array)!=1){        
                     array_push($gen,array_pop($array),array_pop($array));
                     array_push($final,$gen);
-                    unset($gen[0]);
-                    unset($gen[1]);
-                    unset($array[0]);
-                    unset($array[1]);
-                  
+                    $gen=[]; 
                 }
                 array_push($final,$array[0]);
         }
-        echo $final;
+        echo json_encode($final);
     }
 
 
